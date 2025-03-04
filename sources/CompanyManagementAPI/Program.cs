@@ -1,13 +1,19 @@
 ﻿using CompanyManagementAPI.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
+using NLog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+
+
+
 // Thêm CORS và IIS vào phần cấu hình dịch vụ.
 builder.Services.ConfigureCors();
 builder.Services.ConfigureIISIntegration();
+builder.Services.ConfigureLoggerService();
 
 builder.Services.AddControllers(); // Đăng ký các Controllers trong IServiceCollection (Không sử dụng Views).
 
@@ -15,7 +21,7 @@ builder.Services.AddControllers(); // Đăng ký các Controllers trong IService
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Tạo biến ứng dụng của lớp WebApplication.
+// Tạo biến ứng dụng của lớp WebApplication.    
 // Triển khai nhiều giao diện như: IHost, IApplicationBuilder, IEndpointRouteBuilder, ...
 var app = builder.Build();
 
@@ -46,6 +52,43 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 app.UseCors("CorsPolicy");
 
 app.UseAuthorization(); // Uỷ quyền IApplicationBuilder đã chỉ định để kích hoạt khả năng ủy quyền. Phải nằm giữa app.UseRouting() và app.UseEndpoints(...) nếu cấp quyền.
+
+app.Use(async (context, next) =>
+{
+    await context.Response.WriteAsync("Hello from the middleware component.");
+    //Console.WriteLine($"Logic before executing the next delegate in the Use method"); 
+    await next.Invoke();
+    Console.WriteLine($"Logic after executing the next delegate in the Use method");
+});
+
+app.Map("/usingmapbranch", builder =>
+{
+    builder.Use(async (context, next) =>
+    {
+        Console.WriteLine("Map branch logic in the Use method before the next delegate");
+        await next.Invoke(); Console.WriteLine("Map branch logic in the Use method after the next delegate");
+    });
+
+    builder.Run(async context =>
+    {
+        Console.WriteLine($"Map branch response to the client in the Run method");
+        await context.Response.WriteAsync("Hello from the map branch.");
+    });
+ });
+
+app.MapWhen(context => context.Request.Query.ContainsKey("testquerystring"), builder =>
+{
+    builder.Run(async context =>
+    {
+        await context.Response.WriteAsync("Hello from the MapWhen branch.");
+    });
+});
+
+app.Run(async context => 
+{
+    Console.WriteLine("Writing the response to the client in the Run method");
+    await context.Response.WriteAsync("Hello from the middleware component."); 
+});
 
 app.MapControllers(); // Thêm các điểm cuối từ Controller Actions vào IEndpointRouteBuilder.
 

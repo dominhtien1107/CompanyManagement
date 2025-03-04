@@ -1,4 +1,7 @@
-﻿namespace CompanyManagementAPI.Extensions;
+﻿using Contracts;
+using LoggerService;
+
+namespace CompanyManagementAPI.Extensions;
 
 // 1.4 Extension methods and CORS (Cross-Origin Resource Sharing) configuration.
 
@@ -26,4 +29,6 @@ public static class ServiceExtensions
             //options.AuthenticationDisplayName = "";
             //options.ForwardClientCertificate = true;
         });
+
+    public static void ConfigureLoggerService(this IServiceCollection services) => services.AddSingleton<ILoggerManager, LoggerManager>();
 }
