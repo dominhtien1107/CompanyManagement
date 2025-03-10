@@ -1,4 +1,5 @@
 ﻿using CompanyManagementAPI.Extensions;
+using Contracts;
 using Microsoft.AspNetCore.HttpOverrides;
 using NLog;
 
@@ -29,10 +30,15 @@ builder.Services.AddSwaggerGen();
 // Triển khai nhiều giao diện như: IHost, IApplicationBuilder, IEndpointRouteBuilder, ...
 var app = builder.Build();
 
+var logger = app.Services.GetRequiredService<ILoggerManager>();
+app.ConfigureExceptionHandler(logger);
+if (app.Environment.IsProduction())
+    app.UseHsts();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
+    //app.UseDeveloperExceptionPage();
     //app.UseSwagger();
     //app.UseSwaggerUI();
 }
