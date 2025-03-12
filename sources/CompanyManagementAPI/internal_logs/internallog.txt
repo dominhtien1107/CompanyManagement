@@ -3897,3 +3897,31 @@
 2025-03-12 22:18:51.8682 Debug FileTarget(Name=logfile): Preparing for new file: 'D:\MinhTien\CYLLENGE\Minh Tiên\CompanyManagement\sources\CompanyManagementAPI\bin\Debug\net8.0\.\logs\2025-03-12_logfile.txt'
 2025-03-12 22:18:51.8756 Debug FileTarget(Name=logfile): Creating file appender: 'D:\MinhTien\CYLLENGE\Minh Tiên\CompanyManagement\sources\CompanyManagementAPI\bin\Debug\net8.0\.\logs\2025-03-12_logfile.txt'
 2025-03-12 22:18:51.8756 Trace FileTarget(Name=logfile): Opening D:\MinhTien\CYLLENGE\Minh Tiên\CompanyManagement\sources\CompanyManagementAPI\bin\Debug\net8.0\.\logs\2025-03-12_logfile.txt with allowFileSharedWriting=False
+2025-03-12 22:25:00.7249 Info AppDomain Shutting down. LogFactory closing...
+2025-03-12 22:25:00.7512 Debug Stop watching file-filter 'nlog.config' in directory: D:\MinhTien\CYLLENGE\Minh Tiên\CompanyManagement\sources\CompanyManagementAPI
+2025-03-12 22:25:00.7512 Trace Flushing all 1 targets...
+2025-03-12 22:25:00.7671 Trace ForEachItemInParallel() 1 items
+2025-03-12 22:25:00.7671 Trace FileTarget(Name=logfile): FlushAsync
+2025-03-12 22:25:00.7671 Trace Continuation invoked: 
+2025-03-12 22:25:00.7671 Trace Parallel task completed. 0 items remaining
+2025-03-12 22:25:00.7851 Debug Flush completed
+2025-03-12 22:25:00.7851 Trace FileTarget(Name=logfile): FlushAsync Done
+2025-03-12 22:25:00.7851 Debug Closing logging configuration...
+2025-03-12 22:25:00.7851 Trace Closing FileTarget(Name=logfile)
+2025-03-12 22:25:00.7851 Debug FileTarget(Name=logfile): Closing...
+2025-03-12 22:25:00.8011 Trace FileTarget(Name=logfile): FinalizeFile 'D:\MinhTien\CYLLENGE\Minh Tiên\CompanyManagement\sources\CompanyManagementAPI\bin\Debug\net8.0\.\logs\2025-03-12_logfile.txt, isArchiving: False'
+2025-03-12 22:25:00.8011 Debug FileTarget(Name=logfile): FileAppender Invalidate Closing File: 'D:\MinhTien\CYLLENGE\Minh Tiên\CompanyManagement\sources\CompanyManagementAPI\bin\Debug\net8.0\.\logs\2025-03-12_logfile.txt'
+2025-03-12 22:25:00.8011 Trace FileTarget: Closing 'D:\MinhTien\CYLLENGE\Minh Tiên\CompanyManagement\sources\CompanyManagementAPI\bin\Debug\net8.0\.\logs\2025-03-12_logfile.txt'
+2025-03-12 22:25:00.8011 Debug FileTarget(Name=logfile): Closed.
+2025-03-12 22:25:00.8011 Trace Closing .\logs\${shortdate}_logfile.txt
+2025-03-12 22:25:00.8011 Trace Closing Layout Renderer: ${literal}
+2025-03-12 22:25:00.8011 Trace Closing Layout Renderer: ${shortdate}
+2025-03-12 22:25:00.8011 Trace Closing Layout Renderer: ${literal}
+2025-03-12 22:25:00.8011 Trace Closing ${longdate} ${level:uppercase=true} ${message}
+2025-03-12 22:25:00.8011 Trace Closing Layout Renderer: ${longdate}
+2025-03-12 22:25:00.8011 Trace Closing Layout Renderer: ${literal}
+2025-03-12 22:25:00.8011 Trace Closing Layout Renderer: ${level}
+2025-03-12 22:25:00.8011 Trace Closing Layout Renderer: ${literal}
+2025-03-12 22:25:00.8011 Trace Closing Layout Renderer: ${message}
+2025-03-12 22:25:00.8011 Debug Finished closing logging configuration.
+2025-03-12 22:25:00.8011 Info LogFactory has been closed.
