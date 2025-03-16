@@ -1,3 +1,26 @@
-Câu hỏi 1: Tại mục 2.5 (DI, IoC, and Logger Serive Testing):
-Theo như hướng dẫn thì sau khi cấu hình và chạy ứng dung sẽ tạo ra 2 thư mục log là: logs và internal_logs
-Nhưng em chỉ tạo ra được 1 thư mục là: internal_logs.
+Trả lời câu hỏi
+
+1.  Khi chạy môi trường thực tế (trên máy chủ), có thể cấu hình port bằng file launchSetting.json không?
+
+Trả lời:
+Khi chạy môi trường thực tế (trên máy chủ), ta không thể cấu hình port bằng file launchSetting.json.
+Cấu hình này chỉ dành cho môi trường phát triển.
+
+2. Model bindind ở controller kế thừa Idisposable và implement dispose (thì khi hết request có tự động dispose không?
+
+Trả lời:
+Khi 1 Controller kế thừa từ IDispose và implement dispose thì chúng ta phải gọi Dispose thủ công.
+
+Trong trường hợp Controller không kế thừa từ IDispose.
+Nếu Model được DI Container bằng (Transient hoặc Scoped) và Inject Model đó vào Controller để sử dung thì Model đó sẽ tự Dispose khi kết thúc Request.
+
+
+3. Có thể inject một Transient service vô một Singleton service bằng constructor không và Scope của Transient là gì?
+
+Trả lời:
+Trong ASP .NET CORE, chúng ta không thể Inject một Transient service vào một Singleton service.
+
+Lý do: Vì sự khác nhau về vòng đời của Singleton và Transient.
+
+Singleton: Khởi tạo một lần duy duy nhất và tồn tại trong suốt vòng đời của ứng dung.
+Transient: Mỗi lần được yêu cầu, Transient sẽ được khởi tạo lại (vòng đời ngắn: đây cũng là Scope của Transient).
