@@ -14,5 +14,6 @@ public class MappingProfile : Profile
         CreateMap<EmployeeForCreationDto, Employee>();
         CreateMap<EmployeeForUpdateDto, Employee>();
         CreateMap<CompanyForUpdateDto, Company>();
+        CreateMap<EmployeeForUpdateDto, Employee>().ReverseMap(); // Ánh xạ 2 chiều.
     } 
 }
