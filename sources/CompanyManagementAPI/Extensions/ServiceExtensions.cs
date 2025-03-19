@@ -18,7 +18,8 @@ public static class ServiceExtensions
         options.AddPolicy("CorsPolicy", builder =>
         builder.AllowAnyOrigin() // Cho phép truy cập từ tất cả các nguồn <=> WithOrigins(): Chỉ định một nguồn cụ thể.
         .AllowAnyMethod() // Cho phép tất cả các phương thức HTTP <=> WithMethods(): Chỉ định các phương thức cụ thể.
-        .AllowAnyHeader()); // <=> WithHeaders(): Chỉ định các tiêu đề cụ thể.
+        .AllowAnyHeader() // <=> WithHeaders(): Chỉ định các tiêu đề cụ thể.
+        .WithExposedHeaders("X-Pagination"));
     });
 
     // 1.5 IIS Configuration
