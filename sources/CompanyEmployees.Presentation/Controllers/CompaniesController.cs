@@ -69,4 +69,11 @@ public class CompaniesController : ControllerBase
         await _service.CompanyService.UpdateCompanyAsync(id, company, trackChanges: true);
         return NoContent(); 
     }
+
+    [HttpOptions]
+    public IActionResult GetCompaniesOptions()
+    {
+        Response.Headers.Add("Allow", "GET, OPTIONS, POST");
+        return Ok();
+    }
 }
