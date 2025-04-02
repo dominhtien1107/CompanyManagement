@@ -39,6 +39,9 @@ builder.Services.ConfigureHttpCacheHeaders();
 builder.Services.AddMemoryCache();
 builder.Services.ConfigureRateLimitingOptions();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddAuthentication();
+builder.Services.ConfigureIdentity();
+builder.Services.ConfigureJWT(builder.Configuration);
 
 builder.Services.AddControllers(config => { 
     config.RespectBrowserAcceptHeader = true;
@@ -102,6 +105,7 @@ app.UseCors("CorsPolicy");
 app.UseResponseCaching();
 app.UseHttpCacheHeaders();
 
+app.UseAuthentication();
 app.UseAuthorization(); // Uỷ quyền IApplicationBuilder đã chỉ định để kích hoạt khả năng ủy quyền. Phải nằm giữa app.UseRouting() và app.UseEndpoints(...) nếu cấp quyền.
 
 //app.Use(async (context, next) =>
