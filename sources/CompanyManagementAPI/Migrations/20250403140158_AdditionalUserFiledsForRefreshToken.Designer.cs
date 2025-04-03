@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Repository;
@@ -11,9 +12,11 @@ using Repository;
 namespace CompanyManagementAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20250403140158_AdditionalUserFiledsForRefreshToken")]
+    partial class AdditionalUserFiledsForRefreshToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -225,13 +228,13 @@ namespace CompanyManagementAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9d1aab10-8ecb-475b-ab90-25851e2ec77e",
+                            Id = "16ca8e81-3a37-4e3a-aaac-e33678aa5d28",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "9947067e-f75a-4a11-98ef-04a5787ffa48",
+                            Id = "93d23c35-5751-4e61-a3c2-300ea9539d71",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
