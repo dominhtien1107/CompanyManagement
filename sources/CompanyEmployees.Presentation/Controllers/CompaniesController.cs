@@ -1,5 +1,7 @@
 ﻿using CompanyEmployees.Presentation.ActionFilters;
+using CompanyEmployees.Presentation.Extensions;
 using CompanyEmployees.Presentation.ModelBinders;
+using Entities.Responses;
 using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -12,7 +14,7 @@ namespace CompanyEmployees.Presentation.Controllers;
 [Route("api/companies")]
 [ApiController]
 [ApiExplorerSettings(GroupName = "v1")]
-public class CompaniesController : ControllerBase
+public class CompaniesController : ApiControllerBase
 {
     private readonly IServiceManager _service; 
     public CompaniesController(IServiceManager service) => _service = service;
@@ -26,8 +28,8 @@ public class CompaniesController : ControllerBase
     [Authorize(Roles = "Manager")]
     public async Task<IActionResult> GetCompanies()
     {
-        //throw new Exception("Exception");
-        var companies = await _service.CompanyService.GetAllCompaniesAsync(trackChanges: false);
+        var baseResult = _service.CompanyService.GetAllCompanies(trackChanges: false);
+        var companies = baseResult.GetResult<IEnumerable<CompanyDto>>();
         return Ok(companies);
     }
 
@@ -37,7 +39,10 @@ public class CompaniesController : ControllerBase
     //[ResponseCache(Duration = 60)]
     public async Task<IActionResult> GetCompany(Guid id)
     {
-        var company = await _service.CompanyService.GetCompanyAsync(id, trackChanges: false);
+        var baseResult = _service.CompanyService.GetCompany(id, trackChanges: false);
+        if (!baseResult.Success)
+            return ProcessError(baseResult);
+        var company = baseResult.GetResult<CompanyDto>();
         return Ok(company);
     }
 

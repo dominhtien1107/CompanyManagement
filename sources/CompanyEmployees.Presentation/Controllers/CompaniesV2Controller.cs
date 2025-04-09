@@ -14,11 +14,11 @@ public class CompaniesV2Controller : ControllerBase
         _service = service;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetCompanies()
-    {
-        var companies = await _service.CompanyService.GetAllCompaniesAsync(trackChanges: false);
-        var companiesV2 = companies.Select(x => $"{x.Name} V2");
-        return Ok(companiesV2);
-    }
+    //[HttpGet]
+    //public async Task<IActionResult> GetCompanies()
+    //{
+    //    var companies = await _service.CompanyService.GetAllCompaniesAsync(trackChanges: false);
+    //    var companiesV2 = companies.Select(x => $"{x.Name} V2");
+    //    return Ok(companiesV2);
+    //}
 }
